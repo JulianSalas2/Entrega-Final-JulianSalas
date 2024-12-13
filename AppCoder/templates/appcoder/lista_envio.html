@@ -25,6 +25,10 @@
                 <a name=""id=""class="btn btn-info"href="{% url 'editar_envio' envio.id %}"role="button">Editar</a>
                 | 
                 <a name=""id=""class="btn btn-danger"href="{% url 'eliminar_envio' envio.id %}"role="button">Borrar</a>
+                |
+                <a name=""id=""class="btn btn-warning"href="{% url 'detalle_envio' envio.id %}"role="button">Detalles</a>
+                |
+                <a name=""id=""class="btn btn-success"href="{% url 'agregar_envio' envio.id %}"role="button">Agregar</a>
             </th>
         </tr>
         {% endfor %}

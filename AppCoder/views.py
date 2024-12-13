@@ -5,6 +5,10 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView , UpdateView , DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 
@@ -14,25 +18,25 @@ def inicio(request):
 
 #                                           ClASES BASADAS EN VISTAS (CREAR / AGREGAR)
 
-class UniversidadCreateView(CreateView):
+class UniversidadCreateView(LoginRequiredMixin,CreateView):
     model = Universidad
     form_class = UniversidadForm
     template_name = "appcoder/agregar_universidad.html"
     success_url= reverse_lazy("lista_universidad")
 
-class AlumnoCreateView(CreateView):
+class AlumnoCreateView(LoginRequiredMixin,CreateView):
     model = Alumno
     form_class = AlumnoForm
     template_name = "appcoder/agregar_alumno.html"
     success_url= reverse_lazy("lista_alumno")
     
-class DocenteCreateView(CreateView):
+class DocenteCreateView(LoginRequiredMixin,CreateView):
     model = Docente
     form_class = DocenteForm
     template_name = "appcoder/agregar_docente.html"
     success_url= reverse_lazy("lista_docente")
     
-class EnvioCreateView(CreateView):
+class EnvioCreateView(LoginRequiredMixin,CreateView):
     model = Envio
     form_class = EnvioForm
     template_name = "appcoder/agregar_envio.html"
@@ -40,7 +44,7 @@ class EnvioCreateView(CreateView):
 
 #                                           ClASES BASADAS EN VISTAS (Update / Editar )
 
-class UniversidadUpdateView(UpdateView):
+class UniversidadUpdateView(LoginRequiredMixin,UpdateView):
     """
     Vista para editar cursos existentes a través de un formulario
     """
@@ -49,7 +53,7 @@ class UniversidadUpdateView(UpdateView):
     template_name = "appcoder/editar_universidad.html"
     success_url = reverse_lazy("lista_universidad")
 
-class AlumnoUpdateView(UpdateView):
+class AlumnoUpdateView(LoginRequiredMixin,UpdateView):
     """
     Vista para editar cursos existentes a través de un formulario
     """
@@ -58,7 +62,7 @@ class AlumnoUpdateView(UpdateView):
     template_name = "appcoder/editar_alumno.html"
     success_url = reverse_lazy("lista_alumno")
     
-class DocenteUpdateView(UpdateView):
+class DocenteUpdateView(LoginRequiredMixin,UpdateView):
     """
     Vista para editar cursos existentes a través de un formulario
     """
@@ -67,7 +71,7 @@ class DocenteUpdateView(UpdateView):
     template_name = "appcoder/editar_docente.html"
     success_url = reverse_lazy("lista_docente")
     
-class EnvioUpdateView(UpdateView):
+class EnvioUpdateView(LoginRequiredMixin,UpdateView):
     """
     Vista para editar cursos existentes a través de un formulario
     """
@@ -78,7 +82,7 @@ class EnvioUpdateView(UpdateView):
 
 #                                           ClASES BASADAS EN VISTAS (DELETE / Eliminar )
 
-class UniversidadDeleteView(DeleteView):
+class UniversidadDeleteView(LoginRequiredMixin,DeleteView):
     """
     Vista para eliminar cursos.
     """
@@ -86,7 +90,7 @@ class UniversidadDeleteView(DeleteView):
     success_url = reverse_lazy("lista_universidad")  # URL de redirección después de eliminar un curso
     template_name = "appcoder/eliminar_universidad.html"  # Plantilla para confirmar la eliminación
     
-class AlumnoDeleteView(DeleteView):
+class AlumnoDeleteView(LoginRequiredMixin,DeleteView):
     """
     Vista para eliminar cursos.
     """
@@ -94,7 +98,7 @@ class AlumnoDeleteView(DeleteView):
     success_url = reverse_lazy("lista_alumno")  # URL de redirección después de eliminar un curso
     template_name = "appcoder/eliminar_alumno.html"  # Plantilla para confirmar la eliminación
     
-class DocenteDeleteView(DeleteView):
+class DocenteDeleteView(LoginRequiredMixin,DeleteView):
     """
     Vista para eliminar cursos.
     """
@@ -102,7 +106,7 @@ class DocenteDeleteView(DeleteView):
     success_url = reverse_lazy("lista_docente")  # URL de redirección después de eliminar un curso
     template_name = "appcoder/eliminar_docente.html"  # Plantilla para confirmar la eliminación
     
-class EnvioDeleteView(DeleteView):
+class EnvioDeleteView(LoginRequiredMixin,DeleteView):
     """
     Vista para eliminar cursos.
     """
@@ -111,10 +115,10 @@ class EnvioDeleteView(DeleteView):
     template_name = "appcoder/eliminar_envio.html"  # Plantilla para confirmar la eliminación
 
 
-#                                           ClASES BASADAS EN VISTAS ( List /Listas  )
+#                                           ClASES BASADAS EN VISTAS ( Detail / Detalles  )
 
 
-class UniversidadDetalle(DetailView):
+class UniversidadDetalle(LoginRequiredMixin,DetailView):
     """
     Vista para mostrar los detalles de un curso específico.
     """
@@ -122,7 +126,7 @@ class UniversidadDetalle(DetailView):
     template_name = "appcoder/detalle_universidad.html"
     
     
-class AlumnoDetalle(DetailView):
+class AlumnoDetalle(LoginRequiredMixin,DetailView):
     """
     Vista para mostrar los detalles de un curso específico.
     """
@@ -130,7 +134,7 @@ class AlumnoDetalle(DetailView):
     template_name = "appcoder/detalle_alumno.html"
     
     
-class DocenteDetalle(DetailView):
+class DocenteDetalle(LoginRequiredMixin,DetailView):
     """
     Vista para mostrar los detalles de un curso específico.
     """
@@ -138,37 +142,37 @@ class DocenteDetalle(DetailView):
     template_name = "appcoder/detalle_docente.html"
     
 
-class EnvioDetalle(DetailView):
+class EnvioDetalle(LoginRequiredMixin,DetailView):
     """
     Vista para mostrar los detalles de un curso específico.
     """
     model = Envio
-    template_name = "appcoder/detalle_envio"
+    template_name = "appcoder/detalle_envio.html"
 
 #                                           ClASES BASADAS EN VISTAS ( List /Listas  )
 
-class UniversidadListView(ListView):
+class UniversidadListView(LoginRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los cursos.
     """
     model = Universidad  # Modelo con el que trabaja esta vista
     template_name = "appcoder/lista_universidad.html"  # Plantilla para renderizar la lista
     
-class AlumnoListView(ListView):
+class AlumnoListView(LoginRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los cursos.
     """
     model = Alumno  # Modelo con el que trabaja esta vista
     template_name = "appcoder/lista_alumno.html"  # Plantilla para renderizar la lista
     
-class DocenteListView(ListView):
+class DocenteListView(LoginRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los cursos.
     """
     model = Docente  # Modelo con el que trabaja esta vista
     template_name = "appcoder/lista_docente.html"  # Plantilla para renderizar la lista
     
-class EnvioListView(ListView):
+class EnvioListView(LoginRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los cursos.
     """
@@ -198,7 +202,7 @@ class EnvioListView(ListView):
 
 
 #                       ----- BUSQUEDA DE UNIVERSIDADES METODO GET------
-
+@login_required
 def buscar_universidades(request):
     """
     Vista para buscar universidades en la base de datos.

@@ -25,17 +25,45 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                       <li class="nav-item"><a class="nav-link" href="{% url 'buscar_universidades'%}">Buscar Universidades</a></li>  <!-- //Le indicamos a donde va cuando toco el boton inicio. Le indico por medio de la url y el nombre correspondiente. -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_universidad' %}">Agregar Universidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'agregar_docente' %}">Agregar Docente</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_alumno' %}">Agregar Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_envio'%}">Agregar Envios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_docente' %}">Lista de Docentes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_alumno' %}">Lista de Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_universidad' %}">Lista de Universidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_envio' %}">Lista de Envios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Iniciar Sesión</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Registrarse</a></li>
+                       <li class="nav-item"><a class="nav-link" href="{% url 'buscar_universidades' %}">Buscar Universidades</a></li>  <!-- //Le indicamos a donde va cuando toco el boton inicio. Le indico por medio de la url y el nombre correspondiente. -->
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_docente' %}"> Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_alumno' %}"> Alumnos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_universidad' %}">Universidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'lista_envio' %}">Envios</a></li>
+                        {% comment %} <li class="nav-item"><a class="nav-link" href="{%  url 'login' %}">Iniciar Sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'register' %}">Registrarse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'cerrar_sesion' %}">Cerrar sesion</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="{%  url 'editar_perfil' %}"> Editar perfil</a></li>  {% endcomment %}
+
+
+
+                        {# DROPDOWN PARA LA CUENTA DE USUARIO #}
+                        {% if request.user.is_authenticated %}
+                            <img src="{{request.avatar.imagen.imagen.url}}" alt="Avatar" style="height: 50px; width: 50px;">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ request.user.username }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'editar_usuario' %}">Editar usuario</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar Avatar</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'cerrar_sesion' %}">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        
+                        {% else %}
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cuenta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'register' %}">Crear cuenta</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>
@@ -90,7 +118,7 @@
         </header>
 
         {% block contenidoQueCambia %}
-        <p>CONTENIDO DE PADRE</p>
+        <h2>{{ mensaje }}</h2>
         {% endblock %}
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">

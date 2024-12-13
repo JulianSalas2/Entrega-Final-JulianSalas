@@ -26,7 +26,10 @@
                 <a name=""id=""class="btn btn-info"href="{% url 'editar_alumno' alumno.id %}"role="button">Editar</a>
                 | 
                 <a name=""id=""class="btn btn-danger"href="{% url 'eliminar_alumno' alumno.id %}"role="button">Borrar</a>
-
+                |
+                <a name=""id=""class="btn btn-warning"href="{% url 'detalle_alumno' alumno.id %}"role="button">Detalles</a>
+                |
+                <a name=""id=""class="btn btn-success"href="{% url 'agregar_alumno' alumno.id %}"role="button">Agregar</a>
             </th>
         </tr>
         {% endfor %}

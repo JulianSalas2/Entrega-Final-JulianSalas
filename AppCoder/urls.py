@@ -4,7 +4,7 @@ from .views import  buscar_universidades
 
 
 urlpatterns = [
-    path('inicio/',views.inicio,name='inicio' ),
+    path('',views.inicio,name='inicio' ),
 
     # BUSQUEDA DE UNIVERSIDADES FORMULARIO GET
 
@@ -12,10 +12,10 @@ urlpatterns = [
 
     # AGREGAR CRUD CREATE
     
-    path('agregar_universidad/',views.UniversidadCreateView.as_view(),name='agregar_universidad' ),
-    path('agregar_alumno/',views.AlumnoCreateView.as_view(),name='agregar_alumno' ),
-    path('agregar_docente/',views.DocenteCreateView.as_view(),name='agregar_docente' ),
-    path('agregar_envio/',views.EnvioCreateView.as_view(),name='agregar_envio' ),
+    path('agregar_universidad/<int:pk>',views.UniversidadCreateView.as_view(),name='agregar_universidad' ),
+    path('agregar_alumno/<int:pk>',views.AlumnoCreateView.as_view(),name='agregar_alumno' ),
+    path('agregar_docente/<int:pk>',views.DocenteCreateView.as_view(),name='agregar_docente' ),
+    path('agregar_envio/<int:pk>',views.EnvioCreateView.as_view(),name='agregar_envio' ),
     
     # EDITAR CRUD UPDATE
     
