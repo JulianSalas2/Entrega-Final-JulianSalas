@@ -1,58 +1,51 @@
-Entrega Final individual Por el estudiante
+Entrega Final Individual por el Estudiante: Julian Salas
+Este es el proyecto final para el curso de Python de Coderhouse, en el cual he implementado una web de gestión de universidades, docentes, alumnos y envíos, junto con un sistema de autenticación de usuarios. A continuación, te explico las principales características y funcionalidades del proyecto.
 
-Julian Salas
+Características Implementadas
+Sistema de Autenticación y Seguridad:
 
-Como podran ver, la tercera pre entrega se utilizo como base de la entrega final , las diferencias que que les hice unas modificaciones y es que al momento de agregar el crud lo hice con clases basdas en vistas para que sea mas organizado , se agrego el modelo avatar y para el momento de agregar el avatar lo puse en editar_avatr para que sea mas dinamico y poder agregar el avatar ahi mismo
+Se requiere que los usuarios estén registrados e iniciados sesión para acceder a la mayoría de las secciones de la web. La única excepción son las páginas de inicio, registro e inicio de sesión.
+He implementado una barra de navegación dinámica, que cambia según si el usuario está autenticado o no. Para los usuarios no registrados, aparecerán las opciones "Iniciar sesión" y "Crear cuenta", y una vez iniciada la sesión, se cambiará a "Editar perfil" y "Cerrar sesión".
+En caso de no estar registrado, el sistema redirige al usuario a la página de inicio de sesión o registro.
+Aplicaciones Separadas:
 
-Otra diferencia es que hice que en la barra de navegacion de mi proyecto solo deje los modelos necesarios y al momento de hacer click en cada modelo poder visualizar el Crud de clases basadas en vistas , el avatar 
-y el boton desplegable con todas sus opciones que son : iniciar sesion y crear cuenta en caso de no haberse registrado y iniciado sesion y en caso de haber iniciado sesion el boton desplegable cambiara a editar perfil y cerrar sesion . Nota : Cabe recalcar que si no estar registrado no podras acceder a ninguna seccion de la app , te mandara a iniciar sesion y en caso de no tener un usuario tendras que registrarte
+El proyecto se divide en dos aplicaciones principales:
+AppCoder: Maneja todo el código relacionado con las secciones de "Buscar Universidades", "Docentes", "Alumnos", "Universidades" y "Envios".
+User: Gestiona todo lo relacionado con el usuario, incluyendo inicio de sesión, registro, edición de perfil, y gestión de avatar.
+Funcionalidades de la Web:
 
-Tambien les agregue seguridad para que como ya mencione cualquiera no pueda navegar por la pagina ("solo no tendra seguridad las secciones inicio("en este caso aparece como CodificAr Dev Demo que seria el boton para ir al inicio") ,registrarse y iniciar sesion"), sino que se tenga que registrar y iniciar sesion para poder navegar por la web , en caso de no tener un usuario tendras que pulsar el boton desplegable que dice cuenta y pulsar registrarse , y despues de registrarse ya tendras un usuario para poder iniciar sesion,
+Registrar y autenticación de usuarios: Los usuarios pueden registrarse y acceder a la página utilizando su nombre de usuario y contraseña.
+Gestión de avatar: Los usuarios pueden agregar y editar su avatar en la sección de "Editar perfil".
+Barra de navegación dinámica: Dependiendo de si el usuario está autenticado, la barra de navegación muestra opciones diferentes.
+CRUD para Universidades, Docentes, Alumnos y Envios: Cada una de estas secciones permite crear, editar, eliminar y visualizar registros. Los formularios correspondientes para estas operaciones están accesibles desde la barra de navegación.
+Seguridad en la navegación: Se protege el acceso a las secciones principales de la web para usuarios no autenticados, como la creación de universidades, docentes, alumnos y envíos.
+Cómo Funciona la Web
+Iniciar el Servidor:
 
-Como podran ver en este proyecto existen 2 Aplicaciones o app , las cuales son AppCoder que es donde puse el codigo general de las secciones 
-Buscar Universidades.
-Docentes.
-Alumnos.
-Universidades.
-Envios.
-Y la otra app es User , que es donde manejo todo lo relacionado con el User como iniciar secion , cerrar sesion , editar perfil y registrarsey lo del avatar que lo agregue en el apartado de editar perfil en la parte inferior, etc.
+Para correr el servidor localmente, utiliza el comando:
+python manage.py runserver
+Luego, accede a http://localhost:8000 desde tu navegador. La página de inicio aparecerá.
+Navegación en la Web:
 
+Si no estás registrado, haz clic en el botón desplegable que dice "Cuenta" y selecciona "Registrar cuenta". Después de completar el registro, podrás iniciar sesión.
+Si ya has iniciado sesión, la barra de navegación cambiará a mostrar tu nombre de usuario, con opciones para "Editar perfil" y "Cerrar sesión".
+Al editar tu perfil, puedes agregar un avatar (preferiblemente un archivo .gif).
+Secciones del Proyecto:
 
-Como funciona la Web? : 
-Primero que nada tendras que correr el comando "python manage.py runserver" para correr el servidor con solo ir a tu navegador y poner ("http://localhost:8000//") te mandara a la seccion de inicio , como ya mencione no podras navegar por la web sin iniciar sesion , asi que dirigete al apartado del boton desplegable cuenta y se te abrira una seccion que contendra iniciar sesion y registrarte , si aun no tienes un usuario tendras 
-que registrarte primero y ya despues tendras que iniciar sesion , y ya podras navegar por la pagina normalmente.Como ya iniciaste sesion ya podras agregar un avatar , para eso dirigete al boton desplegable que antes de iniciar sesion se llamaba cuenta ahora tendra el nombre de tu usuario y si le das click las secciones abran cambiado con editar perfil y cerrar sesion , dirigete a editar perfil rellena el formulario y agrega tu avatar , si no estoy mal tiene que ser .gif eso si no lo se, pero por preferencia y por que asi fue como lo vi en la clase que sea .gif.
+Buscar Universidad: Permite buscar universidades por nombre. Se muestra una lista de universidades y sus países. URL: http://localhost:8000/buscar_universidades/
+Docentes: Muestra los docentes registrados con su nombre, apellido, correo electrónico y profesión. Permite crear, editar, eliminar y detallar docentes. URL: http://localhost:8000/lista_docente/
+Alumnos: Muestra a los alumnos registrados con su nombre, apellido, correo electrónico e ID de estudiante. Permite realizar las mismas acciones CRUD. URL: http://localhost:8000/lista_alumno/
+Universidades: Muestra las universidades creadas con su nombre y país, permitiendo también realizar las acciones CRUD. URL: http://localhost:8000/lista_universidad/
+Envios: Muestra los envíos registrados con su nombre, descripción, fecha de entrega y estado de entrega, permitiendo agregar, editar, eliminar y detallar envíos. URL: http://localhost:8000/lista_envio/
+Cerrar Sesión y Editar Perfil:
 
-Buscar universidad:
-por parte de la seccion de buscar universidad que se encuentra en la parte superor , como su nombre se dice es para buscar universidad ademas abajo te mostrara las universidades y sus paises si deseas buscar busca por el nombre de la universidad , no importa si lo escribes en minusculas o mayusculas te mostrara la universidad quee mas se asemeje a el nombre de la universidad que diste en el buscador 
-http://localhost:8000/buscar_universidades/ por si acaso esta es la url
+Al hacer clic en tu nombre de usuario en la barra de navegación, se mostrarán las opciones de "Editar perfil" y "Cerrar sesión". En "Editar perfil", podrás actualizar tus datos y añadir o cambiar tu avatar.
+Si seleccionas "Cerrar sesión", serás desconectado y redirigido a la página de inicio, donde necesitarás iniciar sesión nuevamente para continuar navegando.
+Eliminar Avatar:
 
-Docentes:
-Por parte de la seccion de Docentes que tambien lo veras en el navegador en la parte superior: Esta seccion te mostrara los docentes que has creado con cada uno de sus apartados :
-Nombre,	Apellido,	Correo Electronico y Profesion, y tambien te permitira crear(te enviara al formulario de agregar Docentes) , editar(te enviara al formulario de editar Docentes) , eliminar(te enviara al formulario de eliminar Docentes) y detallar(te enviara al formulario de detallar Docentes) los docentes, si le das click en alguno de los botones ya anteriormente mencionados crear , editar , eliminar y detallar ,te mostrara el formulario que te permitira realizar alguna de esas acciones mencionadas
-http://localhost:8000/lista_docente/
-
-Alumnos:
-Por parte de la seccion de Alumnos que tambien lo veras en el navegador en la parte superior: Esta seccion te mostrara los alumnos que has creado con cada uno de sus apartados :
-Nombre,	Apellido,	Correo Electronico y ID-Estudiante, y tambien te permitira crear(te enviara al formulario de agregar Alumnos) , editar(te enviara al formulario de editar Alumnos) , eliminar(te enviara al formulario de eliminar Alumnos) y detallar(te enviara al formulario de detallar Alumnos) los alumnos, si le das click en alguno de los botones ya anteriormente mencionados crear , editar , eliminar y detallar ,te mostrara el formulario que te permitira realizar alguna de esas acciones mencionadas
-http://localhost:8000/lista_alumno/
-    
-Universidades:
-Por parte de la seccion de Universidades que tambien lo veras en el navegador en la parte superior: Esta seccion te mostrara las universidades que has creado con cada uno de sus apartados :
-Nombre y pais, y tambien te permitira crear(te enviara al formulario de agregar Universidades) , editar(te enviara al formulario de editar Universidades) , eliminar(te enviara al formulario de eliminar Universidades) y detallar(te enviara al formulario de detallar Universidades) las universidades, si le das click en alguno de los botones ya anteriormente mencionados crear , editar , eliminar y detallar ,te mostrara el formulario que te permitira realizar alguna de esas acciones mencionadas
-http://localhost:8000/lista_universidad/
-
-Envios:
-Por parte de la seccion de Envios que tambien lo veras en el navegador en la parte superior: Esta seccion te mostrara los Envios que has creado con cada uno de sus apartados :
-Nombre ,Descripcion,Fecha De Entrega y Entrega, y tambien te permitira crear(te enviara al formulario de agregar envios) , editar(te enviara al formulario de editar envios) , eliminar(te enviara al formulario de eliminar envios) y detallar(te enviara al formulario de detallar envios) los Envios, si le das click en alguno de los botones ya anteriormente mencionados crear , editar , eliminar y detallar ,te mostrara el formulario que te permitira realizar alguna de esas acciones mencionadas
-http://localhost:8000/lista_envio/
-
-Cerrar sesion:
-Por parte de cerrar sesion , si le das click al boton desplegable con el nombre de tu usuario (Nota: Tienes que haber iniciado sesion) te apareceran dos opciones editar perfil y cerrar sesion, dale click a cerrar sesion y te cerrara la sesion y te saldra un mensaje de que has cerrado sesion haciendo que no tengas permiso de navegar por las secciones anteriormente mencionadas.Y al darle click te pedira que inicies sesion.
-http://localhost:8000/User/cerrar_sesion/
-
-Editar perfil:
-Por parte de Editar perfil , si le das click al boton desplegable con el nombre de tu usuario (Nota: Tienes que haber iniciado sesion) te apareceran dos opciones editar perfil y cerrar sesion, dale click a Editar perfil y te mandara a una pagina con un formulario que deberas rellenar.En este apartado tambien estara la opcion de agregar un avatar (seleccionar un archivo) al darle click te enviara a tus archivos , agrega tu avatar ahi , tiene que ser .gif y le das a guardar cambios. despues de eso te aparecera la imagen.gif que agregaste en la parte superior al lado del boton desplegable 
-http://localhost:8000/User/editar_usuario/
-
-Eliminar avatar:
-Por parte de Eliminar avatar. Esta seccion te aparecera adentro de editar perfil en la parte inferior  ,cabe recalcar que para poder eliminar tu avatar tienes que tener un avatar.Al eliminar el avatar te enviara al inicio y ya no te aparecera la imagen que antes aparecia 
+Si deseas eliminar tu avatar, esta opción se encuentra dentro de la sección "Editar perfil" en la parte inferior. Solo podrás eliminar el avatar si tienes uno previamente asignado.
+Notas Importantes:
+Es esencial estar registrado e iniciar sesión para poder navegar por las secciones protegidas de la web.
+Los avatares deben ser archivos .gif para garantizar que se carguen correctamente.
+La página de inicio, junto con las páginas de registro e inicio de sesión, están accesibles para todos los usuarios, sin necesidad de autenticación previa.
+Este proyecto ha sido diseñado para ofrecer una estructura clara y segura para la gestión de universidades, docentes, alumnos y envíos, mientras que garantiza que solo los usuarios autenticados puedan acceder a las funcionalidades protegidas.

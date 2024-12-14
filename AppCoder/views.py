@@ -17,30 +17,51 @@ def inicio(request):
     return render(request,'appcoder/index.html')
 
 #                                           ClASES BASADAS EN VISTAS (CREAR / AGREGAR)
+@login_required
+def agregar_universidad(request):
+    if request.method == 'POST':
+        form = UniversidadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_universidad')
+    else:
+        form = UniversidadForm()
+    return render(request, 'AppCoder/agregar_universidad.html', {'form': form})
 
-class UniversidadCreateView(LoginRequiredMixin,CreateView):
-    model = Universidad
-    form_class = UniversidadForm
-    template_name = "appcoder/agregar_universidad.html"
-    success_url= reverse_lazy("lista_universidad")
 
-class AlumnoCreateView(LoginRequiredMixin,CreateView):
-    model = Alumno
-    form_class = AlumnoForm
-    template_name = "appcoder/agregar_alumno.html"
-    success_url= reverse_lazy("lista_alumno")
+@login_required
+def agregar_alumno(request):
+    if request.method == 'POST':
+        form = AlumnoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_alumno')
+    else:
+        form = AlumnoForm()
+    return render(request, 'AppCoder/agregar_alumno.html', {'form': form})
     
-class DocenteCreateView(LoginRequiredMixin,CreateView):
-    model = Docente
-    form_class = DocenteForm
-    template_name = "appcoder/agregar_docente.html"
-    success_url= reverse_lazy("lista_docente")
+@login_required
+def agregar_docente(request):
+    if request.method == 'POST':
+        form = DocenteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_docente')
+    else:
+        form = DocenteForm()
+    return render(request, 'AppCoder/agregar_docente.html', {'form': form})
+
     
-class EnvioCreateView(LoginRequiredMixin,CreateView):
-    model = Envio
-    form_class = EnvioForm
-    template_name = "appcoder/agregar_envio.html"
-    success_url= reverse_lazy("lista_envio")
+@login_required
+def agregar_envio(request):
+    if request.method == 'POST':
+        form = EnvioForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_envio')
+    else:
+        form = EnvioForm()
+    return render(request, 'AppCoder/agregar_envio.html', {'form': form})
 
 #                                           ClASES BASADAS EN VISTAS (Update / Editar )
 

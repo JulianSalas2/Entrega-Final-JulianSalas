@@ -3,7 +3,10 @@
 {% block title %}Lista de Alumnos{% endblock %}
 
 {% block contenidoQueCambia %}
-<h2>Lista de Alumnos </h2>
+<div class = "card-header">
+    <a name=""id=""class="btn btn-primary"href="{% url 'agregar_alumno'  %}"role="button">Agregar nuevo Alumno</a>
+    
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -29,7 +32,7 @@
                 |
                 <a name=""id=""class="btn btn-warning"href="{% url 'detalle_alumno' alumno.id %}"role="button">Detalles</a>
                 |
-                <a name=""id=""class="btn btn-success"href="{% url 'agregar_alumno' alumno.id %}"role="button">Agregar</a>
+                <a name=""id=""class="btn btn-success"href="{% url 'agregar_alumno'  %}"role="button">Agregar</a>
             </th>
         </tr>
         {% endfor %}

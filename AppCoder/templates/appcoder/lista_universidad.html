@@ -3,7 +3,10 @@
 {% block title %}Lista de Universidades{% endblock %}
 
 {% block contenidoQueCambia %}
-<h2>Universidades Disponibles</h2>
+<div class = "card-header">
+    <a name=""id=""class="btn btn-primary"href="{% url 'agregar_universidad'  %}"role="button">Agregar Nueva Universidad</a>
+    
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,7 +27,7 @@
                 |
                 <a name=""id=""class="btn btn-warning"href="{% url 'detalle_universidad' universidad.id %}"role="button">Detalles</a>
                 |
-                <a name=""id=""class="btn btn-success"href="{% url 'agregar_universidad' universidad.id %}"role="button">Agregar</a>
+                <a name=""id=""class="btn btn-success"href="{% url 'agregar_universidad' %}"role="button">Agregar</a>
             </th>
         </tr>
         {% endfor %}

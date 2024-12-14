@@ -3,7 +3,10 @@
 {% block title %}Lista de Envios{% endblock %}
 
 {% block contenidoQueCambia %}
-<h2>Lista de Envios </h2>
+<div class = "card-header">
+    <a name=""id=""class="btn btn-primary"href="{% url 'agregar_envio'  %}"role="button">Agregar nuevo Envio</a>
+    
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -28,7 +31,7 @@
                 |
                 <a name=""id=""class="btn btn-warning"href="{% url 'detalle_envio' envio.id %}"role="button">Detalles</a>
                 |
-                <a name=""id=""class="btn btn-success"href="{% url 'agregar_envio' envio.id %}"role="button">Agregar</a>
+                <a name=""id=""class="btn btn-success"href="{% url 'agregar_envio'  %}"role="button">Agregar</a>
             </th>
         </tr>
         {% endfor %}
