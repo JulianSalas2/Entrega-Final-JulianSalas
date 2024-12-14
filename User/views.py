@@ -40,8 +40,7 @@ def login_request(request):
     return render(request, "User/login.html", {"form":form})  # Renderiza el formulario de login
 
 
-
-#                              ------------------------Vista de registro--------------------------------------------
+#                               ---------------------------------Vista de registro--------------------------------------------                         
 def register(request):
 
     if request.method == 'POST': 
@@ -61,7 +60,7 @@ def register(request):
     return render(request,"User/register.html" ,  {"form":form})
 
 #           Vista de Cerrar sesion
-
+@login_required
 def cerrar_sesion(request):
     """
     Cierra la sesión del usuario y redirige a la página de inicio.
@@ -72,7 +71,7 @@ def cerrar_sesion(request):
 
 #                          ------------------------ Vista de EDITAR USUARIO-------------------------
 
-
+@login_required
 def editar_perfil(request):
     """
     Función de vista para manejar la edición del perfil de usuario.
@@ -118,7 +117,7 @@ def editar_perfil(request):
 
     
 #                                       ---------------------Vista de Eliminar Avatar-----------------------
-    
+
 @login_required
 def eliminar_avatar(request):
     """

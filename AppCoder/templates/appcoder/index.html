@@ -39,7 +39,13 @@
 
                         {# DROPDOWN PARA LA CUENTA DE USUARIO #}
                         {% if request.user.is_authenticated %}
-                            <img src="{{avatar.imagen.url}}" height = "100"/>
+                            {% if request.user.avatar %}
+                            <!-- Mostrar el avatar del usuario -->
+                            <img src="{{ request.user.avatar.imagen.url }}" alt="Avatar" style="height: 50px; width: 50px;">
+                            {% else %}
+                            <!-- Mostrar la imagen por defecto si no tiene avatar -->
+                            <img src="{% static 'img/default_avatar.png' %}" alt="Avatar por defecto" style="height: 50px; width: 50px;">
+                            {% endif %}
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ request.user.username }}

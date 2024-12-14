@@ -125,11 +125,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Indicamos la URL para acceder a la carpeta de imágenes
-MEDIA_URL = '/avatares/'
-# Indicamos cuál va a ser el path para llegar a la carpeta 
-# media que creamos en el paso anterior
-MEDIA_ROOT = os.path.join(BASE_DIR, 'avatares')
+# # Indicamos la URL para acceder a la carpeta de imágenes
+# # Indicamos cuál va a ser el path para llegar a la carpeta 
+# # media que creamos en el paso anterior
+# MEDIA_ROOT = os.path.join(BASE_DIR, '')
+# MEDIA_URL = '/imagenes/'
+# Para gestionar los archivos media (como imágenes de avatares)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 
 
 
