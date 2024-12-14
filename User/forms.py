@@ -44,5 +44,4 @@ class UserEditForm(UserChangeForm):
             help_texts = {k:"" for k in fields}
 
 #           ---------------------------------------formulario de Carga de Avatar------------------------------------------------------
-class AvatarFormulario(forms.Form):
-    imagen = forms.ImageField(label="Cargar Avatar", required=True)
+

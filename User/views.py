@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm , UserEditForm , AvatarFormulario
+from .forms import UserRegisterForm , UserEditForm
 from django.contrib.auth.forms import AuthenticationForm   # Formularios de autenticación de usuarios
 from django.contrib.auth import login, logout, authenticate  # Funciones para gestionar inicios de sesión y autenticación
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -116,32 +116,6 @@ def editar_perfil(request):
 
 #                   -------------------------Vista de Agregar Avatar------------------------
 
-@login_required
-def agregar_avatar(request):
-    if request.method == "POST":
-        mi_form = AvatarFormulario(request.POST, request.FILES)
-        
-        if mi_form.is_valid():
-            user = User.objects.get(username=request.user)
-            
-            # Verifica si el usuario ya tiene un avatar
-            avatar, created = Avatar.objects.get_or_create(user=user)
-            
-            if not created:
-                # Si el avatar ya existe, eliminamos el archivo anterior
-                avatar.imagen.delete()  # Esto elimina el archivo de la imagen
-                avatar.delete()  # Esto elimina el registro en la base de datos
-
-            # Crea o actualiza el avatar con la nueva imagen
-            avatar = Avatar(user=user, imagen=mi_form.cleaned_data['imagen'])
-            avatar.save()
-
-            return render(request, "AppCoder/index.html")
-    else:
-        mi_form = AvatarFormulario()
-
-    context_data = {"mi_form": mi_form}
-    return render(request, "User/agregar_avatar.html", context_data)    
     
 #                                       ---------------------Vista de Eliminar Avatar-----------------------
     
