@@ -34,20 +34,20 @@ def login_request(request):
                 return redirect("inicio")  # Redirige a la página de inicio o dashboard
             else:
                 # Si la autenticación falla
-                return render(request, "user/login.html", {
+                return render(request, "User/login.html", {
                     "mensaje": "Error, datos incorrectos",
                     "form": form
                 })
         else:
             # Si el formulario no es válido
-            return render(request, "user/login.html", {
+            return render(request, "User/login.html", {
                 "mensaje": "Error, formulario inválido",
                 "form": form
             })
 
     else:
         form = AuthenticationForm()  # Si es un GET, muestra el formulario vacío
-        return render(request, "user/login.html", {"form": form})
+        return render(request, "User/login.html", {"form": form})
 
 #                               ---------------------------------Vista de registro--------------------------------------------                         
 def register(request):
@@ -60,7 +60,7 @@ def register(request):
     else:
         form = UserRegisterForm()
 
-    return render(request, "user/register.html", {"form": form})
+    return render(request, "User/register.html", {"form": form})
 
 #           Vista de Cerrar sesion
 @login_required
@@ -112,7 +112,7 @@ def editar_perfil(request):
         initial_data = {'imagen': avatar.imagen if avatar else None}
         miFormulario = UserEditForm(initial=initial_data, instance=request.user)
 
-    return render(request, "user/editar_usuario.html", {"form": miFormulario, "usuario": usuario, "avatar": avatar})
+    return render(request, "User/editar_usuario.html", {"form": miFormulario, "usuario": usuario, "avatar": avatar})
 
 
 #                   -------------------------Vista de Agregar Avatar------------------------
