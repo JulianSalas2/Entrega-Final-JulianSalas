@@ -1,6 +1,7 @@
 from django.urls import path
 from AppCoder import views
 from .views import  buscar_universidades
+from . import views
 
 
 urlpatterns = [

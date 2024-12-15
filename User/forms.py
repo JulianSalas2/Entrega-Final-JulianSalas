@@ -11,9 +11,16 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
-        # Si queremos EDIAR los mensajes de ayuda editamos este dict,
-            # de lo contrario lo limpiamos de ésta forma.
-        help_text = {k: "" for k in fields}
+        help_text = {k: "" for k in fields}  # Eliminar textos de ayuda
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Las contraseñas no coinciden")
+        
+        return password2
         
 #          ----------------------------------------Form de editar Usuario--------------------------------------------             \
     

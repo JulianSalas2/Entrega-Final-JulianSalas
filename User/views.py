@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate  # Funciones para ge
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import Avatar
-from django.contrib.auth.models import User
+
 
 
 
@@ -17,47 +17,50 @@ def login_request(request):
     """
     Función para manejar las solicitudes de inicio de sesión.
     """
-    if request.method == "POST":  # Si el formulario fue enviado (método POST)
-        form = AuthenticationForm(request, data=request.POST)  # Crea un formulario y lo llena con los datos enviados
-        print(form)  # Imprime el formulario en la consola (para depuración)
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
 
-        if form.is_valid():  # Si el formulario es válido
-            usuario = form.cleaned_data.get("username")  # Obtiene el nombre de usuario
-            clave = form.cleaned_data.get("password")  # Obtiene la contraseña
+        if form.is_valid():
+            # Obtiene las credenciales del formulario
+            usuario = form.cleaned_data.get("username")
+            clave = form.cleaned_data.get("password")
 
-            nombre_usuario = authenticate(username=usuario, password=clave)  # Intenta autenticar al usuario
+            # Intenta autenticar al usuario
+            user = authenticate(username=usuario, password=clave)
 
-            if nombre_usuario is not None:  # Si la autenticación es exitosa
-                login(request, nombre_usuario)  # Inicia la sesión del usuario
-                return render(request, "AppCoder/index.html", {"mensaje":f"Has iniciado sesión. Bienvenido {usuario}"})  # Renderiza la plantilla con un mensaje de bienvenida
-            else:  # Si la autenticación falla
-                form = AuthenticationForm()  # Crea un nuevo formulario vacío
-                return render(request, "User/login.html", {"mensaje":"Error, datos incorrectos", "form": form})  # Renderiza el formulario de login con un mensaje de error
-        else:  # Si el formulario no es válido
-            return render(request, "AppCoder/index.html", {"mensaje":"Error, formulario inválido"})  # Renderiza la plantilla con un mensaje de error
+            if user is not None:
+                # Si la autenticación es exitosa, iniciar sesión
+                login(request, user)
+                return redirect("inicio")  # Redirige a la página de inicio o dashboard
+            else:
+                # Si la autenticación falla
+                return render(request, "user/login.html", {
+                    "mensaje": "Error, datos incorrectos",
+                    "form": form
+                })
+        else:
+            # Si el formulario no es válido
+            return render(request, "user/login.html", {
+                "mensaje": "Error, formulario inválido",
+                "form": form
+            })
 
-    form = AuthenticationForm()  # Si es una solicitud GET (primera vez que se accede a la página), crea un formulario vacío
-    return render(request, "User/login.html", {"form":form})  # Renderiza el formulario de login
-
+    else:
+        form = AuthenticationForm()  # Si es un GET, muestra el formulario vacío
+        return render(request, "user/login.html", {"form": form})
 
 #                               ---------------------------------Vista de registro--------------------------------------------                         
 def register(request):
-
-    if request.method == 'POST': 
-
-            #form = UserCreationForm(request.POST)
-            form = UserRegisterForm(request.POST)
-            if form.is_valid():
-
-                username = form.cleaned_data['username']
-                form.save()
-                return render(request,"AppCoder/index.html" ,  {"mensaje":"Usuario Creado :)"})
-
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirigir a la página de inicio después de la creación del usuario
+            return redirect('inicio')  # Cambia 'inicio' al nombre de la URL correcta de tu app
     else:
-    #form = UserCreationForm()    
-        form = UserRegisterForm()     
+        form = UserRegisterForm()
 
-    return render(request,"User/register.html" ,  {"form":form})
+    return render(request, "user/register.html", {"form": form})
 
 #           Vista de Cerrar sesion
 @login_required
@@ -66,8 +69,7 @@ def cerrar_sesion(request):
     Cierra la sesión del usuario y redirige a la página de inicio.
     """
     logout(request)  # Cierra la sesión
-    return render(request,"AppCoder/index.html" ,  {"mensaje":"Has cerrado sesión con éxito."})  # Redirige al usuario a la página de inicio
-
+    return redirect('inicio')  # Redirige a la página de inicio después de cerrar sesión
 
 #                          ------------------------ Vista de EDITAR USUARIO-------------------------
 
@@ -110,7 +112,7 @@ def editar_perfil(request):
         initial_data = {'imagen': avatar.imagen if avatar else None}
         miFormulario = UserEditForm(initial=initial_data, instance=request.user)
 
-    return render(request, "User/editar_usuario.html", {"form": miFormulario, "usuario": usuario, "avatar": avatar})
+    return render(request, "user/editar_usuario.html", {"form": miFormulario, "usuario": usuario, "avatar": avatar})
 
 
 #                   -------------------------Vista de Agregar Avatar------------------------
