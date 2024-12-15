@@ -64,3 +64,12 @@ Pruebas de Conexión y Acceso
    - Editar el perfil desde `/User/editar_perfil/`.
    - Editar el perfil desde Dropdown
    - Eliminar el avatar `/User/eliminar_avatar/`. O desde la edicion tambien se puede
+
+
+Test:
+1. Se puede crear un User correctamente - Completado - Julian Salas - 13/12/2024
+2. User puede hacer un login correcto - Completado - Julian Salas - 13/12/2024
+3. User sin login puede acceder a general - Completado - Julian Salas - 13/12/2024 - General: Inicio, Acerca de mi, Crear Usuario, Login
+4. User sin login no puede acceder al resto - Completado - Julian Salas - 13/12/2024 - Resto: Buscar Universidad,Docentes,Alumnos, Universidades,Envios
+5. User general puede ver botones  - Completado - Julian Salas - 13/12/2024 - Botones : Editar, Borrar, Detalles , Agregar
+6. Superuser se genera de /admin o termina - Completado - Julian Salas - 13/12/2024 - Se brindaron mismos permisos a Staff"""
