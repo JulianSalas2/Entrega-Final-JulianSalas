@@ -16,7 +16,10 @@ from django.contrib.auth.decorators import login_required
 def inicio(request):
     return render(request,'appcoder/index.html')
 
-#                                           ClASES BASADAS EN VISTAS (CREAR / AGREGAR)
+def conoceme(req):
+    return render(req,'appcoder/conoceme.html')
+
+#                                            VISTAS (CREAR / AGREGAR)
 @login_required
 def agregar_universidad(request):
     if request.method == 'POST':

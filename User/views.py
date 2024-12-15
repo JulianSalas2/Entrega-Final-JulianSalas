@@ -74,6 +74,12 @@ def cerrar_sesion(request):
 #                          ------------------------ Vista de EDITAR USUARIO-------------------------
 
 @login_required
+def perfil(request):
+    user = request.user
+    return render(request, 'User/perfil.html', {'user': user})
+
+
+@login_required
 def editar_perfil(request):
     """
     Función de vista para manejar la edición del perfil de usuario.

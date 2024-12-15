@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('',views.inicio,name='inicio' ),
+    path('conoceme/',views.conoceme,name='conoceme' ),
 
     # BUSQUEDA DE UNIVERSIDADES FORMULARIO GET
 
