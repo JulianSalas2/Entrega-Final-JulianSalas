@@ -1,10 +1,10 @@
-
+ ##### Julian Salas #########
 
 # Entrega Final - Proyecto Django
 
 ## Video visita al sitio
 
-
+https://drive.google.com/file/d/17_HhctwlQJtv9h2I3stdBXZBCO9L9ro6/view?usp=sharing
 
 ## Descripción
 
@@ -33,8 +33,8 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 2. **Navegar al directorio del proyecto:**
 
     ```pwsh
-    cd Entrega-Final-JulianSalas
-    cd cd .\Tercera-pre-entrega-JulianSalas\
+    cd .\Entrega-Final-JulianSalas\
+    cd .\Tercera-pre-entrega-JulianSalas\
 
     Esto es debido a que la tercera pre entrega se utilizo como base para la entrega final
     ```
